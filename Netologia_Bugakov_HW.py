@@ -1,22 +1,22 @@
-def cook_book_complite():  # Можно было сделать фу-цию с аргуметом, где подавалось название файла
-    with open("input.txt", "r", encoding="utf-8") as f:  # Но я решил читать из кокретного, удобно для тестов
+def cook_book_complete():  # Функция заполнения словаря
+    with open("input.txt", "r", encoding="utf-8") as f: 
         cook_book = {}
-        line = f.readline()  # считываем строку с названием бюда
+        line = f.readline() 
         while line:
-            dish = line.strip()  # присваиваем переменную и очишаем от пробелов
-            ingridients_number = int(f.readline().strip())  # считываем вторую строку(число)
+            dish = line.strip() 
+            ingridients_number = int(f.readline().strip())  
             ingridient_list = []
-            for _ in range(ingridients_number):  # цикл по кол-ву ингридиентов
+            for _ in range(ingridients_number):  
                 ingridient_name, quantity, measure = f.readline().strip().split(
-                    ' | ')  # считываем строки разделенные знаком
-                ingridient_dict = {}  # Создание и заполнение словаря
+                    ' | ') 
+                ingridient_dict = {} 
                 ingridient_dict['ingridient_name'] = ingridient_name
                 ingridient_dict['quantity'] = int(quantity)
                 ingridient_dict['measure'] = measure
                 ingridient_list.append(ingridient_dict)
-            cook_book[dish] = ingridient_list  # кладем в словарь-меню наше блюдо
-            f.readline()  # пропускаем пробельную строку
-            line = f.readline()  # снова считываем строку с названием блюда
+            cook_book[dish] = ingridient_list  
+            f.readline()  
+            line = f.readline()  
 
     return cook_book
 
