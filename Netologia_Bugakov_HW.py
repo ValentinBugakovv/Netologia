@@ -1,5 +1,5 @@
-def cook_book_complete():  # Функция заполнения словаря
-    with open("input.txt", "r", encoding="utf-8") as f: 
+def cook_book_complete(k="input.txt", p=input()):  # Функция заполнения словаря
+    with open(k, "r", encoding="utf-8") as f: 
         cook_book = {}
         line = f.readline() 
         while line:
@@ -43,7 +43,7 @@ def print_shop_list(shop_list):
 def create_shop_list():
     person_count = int(input('Введите количество персон: '))
     dishes = input('Введите блюда через запятую: ').split(', ')
-    cook_book = cook_book_complite()
+    cook_book = cook_book_complete()
     shop_list = get_shop_list_by_dishes(dishes, person_count, cook_book)
     print_shop_list(shop_list)
 
