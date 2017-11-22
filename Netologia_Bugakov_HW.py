@@ -1,5 +1,5 @@
-def cook_book_complete(k="input.txt", p=input()):  # Функция заполнения словаря
-    with open(k, "r", encoding="utf-8") as f: 
+def cook_book_complete(default_name = "input.txt"):  # Функция заполнения словаря
+    with open(default_name, "r", encoding="utf-8") as f: 
         cook_book = {}
         line = f.readline() 
         while line:
