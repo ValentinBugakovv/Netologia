@@ -27,17 +27,16 @@ news = ["newsafr.txt", "newscy.txt", "newsfr.txt", "newsit.txt"]
 # for enc in news:
 #     ecod.append(check_encoding(enc)) Определил кодировки
 
-news_dict = {"newsafr.txt":"utf-8", # руками внес в словарь, но толлько
-             "newscy.txt":"ascii",  # удобства, в алгоритме не использовал
-             "newsfr.txt":"ISO-8859-5",
-             "newsit.txt":"windows-1251"
+news_dict = {"newsafr.txt": "utf-8",  # руками внес в словарь, но толлько
+             "newscy.txt": "ascii",  # удобства, в алгоритме не использовал
+             "newsfr.txt": "ISO-8859-5",
+             "newsit.txt": "windows-1251"
              }
 
-
 with open("newsafr.txt", "r", encoding="utf-8") as f:
-        print(*(top_10(f)))
+    print(*(top_10(f)))
 with open("newscy.txt", "r", encoding="ascii") as f:
-        print(*(top_10(f)))
+    print(*(top_10(f)))
 with open("newsfr.txt", "r", encoding="ISO-8859-5") as f:
     print(*(top_10(f)))
 with open("newsit.txt", "r", encoding="windows-1251") as f:
