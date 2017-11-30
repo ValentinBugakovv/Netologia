@@ -3,9 +3,10 @@ from subprocess import Popen
 import os.path
 import glob
 
-files_path = (os.path.abspath('2.4-external-programs/result'))
+result = (os.mkdir("result"))
+files_path = (os.path.abspath('/result'))
 files = glob.glob(os.path.join(files_path, "*.jpg"))
-program_path = os.path.abspath('2.4-external-programs/convert.exe')
+program_path = os.path.abspath('/convert.exe')
 
 for file in files:
         args = [program_path, file, '-resize', '200', file]
