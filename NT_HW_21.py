@@ -2,10 +2,12 @@ from collections import Counter
 import chardet
 from pprint import pprint
 
+
 def check_encoding(fname):
     rawdata = open(fname, "rb").read()
     result = chardet.detect(rawdata)
     return result['encoding']
+
 
 def top_10(f):
     array = [line.strip().split() for line in f]
@@ -32,7 +34,6 @@ news_dict = {"newsafr.txt":"utf-8", # руками внес в словарь, �
              }
 
 
-
 with open("newsafr.txt", "r", encoding="utf-8") as f:
         print(*(top_10(f)))
 with open("newscy.txt", "r", encoding="ascii") as f:
@@ -41,6 +42,3 @@ with open("newsfr.txt", "r", encoding="ISO-8859-5") as f:
     print(*(top_10(f)))
 with open("newsit.txt", "r", encoding="windows-1251") as f:
     pprint((top_10(f)))
-
-
-
