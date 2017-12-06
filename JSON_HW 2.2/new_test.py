@@ -46,4 +46,3 @@ for filename in filenames:
 
     print('filename %s:' % filename)
     pprint(top_words)
-    print('\n')
