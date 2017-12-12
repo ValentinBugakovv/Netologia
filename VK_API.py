@@ -1,6 +1,6 @@
 import requests
 
-id = 6294985  # id приложения
+id_app = 6294985  # id приложения
 my_id = 1786057
 token = "659ce82a2b0eb6208f5698cb409234c3c6326656c2664cae74535666962871b7cf799428048c82c7394c4"
 
@@ -19,7 +19,31 @@ def Mutual_friends(id_1, id_2):
     return (response.json())
 
 
-id_1 = int(input("Введите ID первого пользователя\n"))
-id_2 = int(input("Введите ID второго пользователя\n"))
+def read_input():
+    id_1 = int(input("Введите ID первого пользователя\n"))
+    id_2 = int(input("Введите ID второго пользователя\n"))
+    return id_1, id_2
 
-print(Mutual_friends(id_1, id_2))
+
+def solve(id1, id2):
+    vk_api = Mutual_friends(id1, id2)
+    url = "https://vk.com/id"
+    result = []
+    for idd in vk_api.get('response', []):
+        result.append(url + str(idd))
+    return result
+
+
+def output_result(friends_urls):
+    for url in friends_urls:
+        print(url)
+
+
+def main():
+    id_1, id_2 = read_input()
+    mutual_friends_urls = solve(id_1, id_2)
+    output_result(mutual_friends_urls)
+
+
+if __name__ == "__main__":
+    main()
