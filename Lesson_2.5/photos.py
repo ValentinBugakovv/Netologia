@@ -1,18 +1,18 @@
-import os.path
-import glob
-from subprocess import Popen
+import os
+import subprocess
 
-if os.path.exists("result") == False:
-    result = (os.mkdir("result"))
+if not os.path.exists("result"):
+    result = os.mkdir("result")
+source_path = os.path.abspath('Source')
+result_path = os.path.abspath('result')
 
-program_path = os.path.abspath('/convert.exe')
-source_dir = os.path.join("Source")
-result_dir = os.path.join("result")
-#files = glob.glob(os.path.join('Source', "*.jpg"))
-files_path = (os.path.abspath("Source"))
-
-for file in files_path:
-    args = ['convert.exe', source_dir, '-resize', '200', result_dir]
-    #args = ['convert.exe', file, '-resize', '200', file]
-    proc = Popen(args)
+program_path = os.path.abspath('convert.exe')
+for file_name in os.listdir(source_path):
+    if not file_name.endswith(".jpg"):
+        continue
+    source_file = os.path.join(source_path, file_name)
+    result_file = os.path.join(result_path, file_name)
+    args = ['convert.exe', source_file, '-resize', '200', result_file]
+    print(args)
+    subprocess.call(args)
 
