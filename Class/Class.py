@@ -1,35 +1,16 @@
 class Animals:
+    age = 0
+    health = 100
+    status = "life"
+
     def __init__(self, name, weight):
         self.weight = weight
         self.name = name
-
-        self.age = 0
-        self.health = 100
-        self.status = "life"
 
     def update_status(self):
         if self.health < 0:
             self.status = "die"
         return self.status
-
-    def set_weight(self, weight):
-        self.weight = weight
-
-    def get_weight(self):
-        return self.weight
-
-    def set_name(self, name):
-        self.name = name
-
-    def get_name(self):
-        return self.name
-
-    def birthday(self):
-        self.age += 1
-        print(f"Happy Birthday! It's {self.age}")
-
-    def get_age(self):
-        return self.age
 
     def feed(self):
         self.health += 10
@@ -41,7 +22,7 @@ class Animals:
 
 class Sheep(Animals):
     def __init__(self, name):
-        super(Sheep, self).__init__(name, weight=5)
+        super().__init__(name, weight=5)
         self.wool = 0
 
     def shear(self):
@@ -55,7 +36,7 @@ class Sheep(Animals):
 
 class HollandSheep(Sheep):
     def __init__(self, name):
-        super(HollandSheep, self).__init__(name)
+        super().__init__(name)
 
     def shear(self):
         self.wool += 15
@@ -65,7 +46,7 @@ class HollandSheep(Sheep):
 
 class Pig(Animals):
     def __init__(self, name):
-        super(Pig, self).__init__(name, weight=40)
+        super().__init__(name, weight=40)
         self.meat = 0
 
     def kill(self):
@@ -76,7 +57,7 @@ class Pig(Animals):
 
 class Cow(Animals):
     def __init__(self, name):
-        super(Cow, self).__init__(name, weight=80)
+        super().__init__(name, weight=80)
         self.milk = 100
 
     def get_milk(self):
@@ -87,30 +68,36 @@ class Cow(Animals):
             print("Cow is tired")
 
 
-class Chicken(Animals):
+class Birds(Animals):
+    def __init__(self, name, ):
+        super().__init__(name, weight=1)
+        self.eggs = 0
+
+
+class Chicken(Birds):
     def __init__(self, name):
-        super(Chicken, self).__init__(name, weight=1)
+        super().__init__(name)
         self.eggs = 3
 
     def get_eggs(self):
         print(f"You get {self.eggs} eggs")
 
 
-class Duck(Chicken):
+class Duck(Birds):
     def __init__(self, name):
-        super(Duck, self).__init__(name)
+        super().__init__(name)
         self.eggs = 2
 
 
-class Goose(Chicken):
+class Goose(Birds):
     def __init__(self, name):
-        super(Goose, self).__init__(name)
+        super().__init__(name)
         self.eggs = 1
 
 
 class Goat(Animals):
     def __init__(self, name):
-        super(Goat, self).__init__(name, weight=30)
+        super().__init__(name, weight=30)
         self.meat = 0
         self.milk = 6
 
@@ -125,3 +112,4 @@ class Goat(Animals):
             print(f"You get {2} liters")
         else:
             print("The goat is tired")
+
