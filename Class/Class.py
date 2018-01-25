@@ -22,7 +22,13 @@ class Animals:
         self.health -= 1000
 
 
-class Sheep(Animals):
+class Mammals(Animals):
+    def __init__(self, name, weight):
+        super().__init__(name, weight)
+        self.meat = int(self.weight * 0.6)
+
+
+class Sheep(Mammals):
     def __init__(self, name, weight):
         super().__init__(name, weight)
         self.wool = 0
@@ -35,6 +41,10 @@ class Sheep(Animals):
     def get_wool(self):
         print(f"You have {self.wool} wools")
 
+    def kill(self):
+        self.status = "die"
+        return print(f"The sheep {self.status}, You get {self.meat} meat")
+
 
 class HollandSheep(Sheep):
     def __init__(self, name, weight):
@@ -46,18 +56,16 @@ class HollandSheep(Sheep):
         return self.wool
 
 
-class Pig(Animals):
+class Pig(Mammals):
     def __init__(self, name, weight):
         super().__init__(name, weight)
-        self.meat = 0
 
     def kill(self):
         self.status = "die"
-        self.meat = self.weight
         return print(f"The pig {self.status}, You get {self.meat} meat")
 
 
-class Cow(Animals):
+class Cow(Mammals):
     def __init__(self, name, weight):
         super().__init__(name, weight)
         self.milk = 100
@@ -68,6 +76,10 @@ class Cow(Animals):
             print(f"You get {10} liters")
         else:
             print("Cow is tired")
+
+    def kill(self):
+        self.status = "die"
+        return print(f"The Cow {self.status}, You get {self.meat} meat")
 
 
 class Birds(Animals):
@@ -97,15 +109,13 @@ class Goose(Birds):
         self.eggs = 1
 
 
-class Goat(Animals):
+class Goat(Mammals):
     def __init__(self, name, weight):
         super().__init__(name, weight)
-        self.meat = 0
         self.milk = 6
 
     def kill(self):
         self.status = "die"
-        self.meat = self.weight
         return print(f"The goat {self.status}, You get {self.meat} meat")
 
     def get_milk(self):
@@ -114,3 +124,4 @@ class Goat(Animals):
             print(f"You get {2} liters")
         else:
             print("The goat is tired")
+
