@@ -2,14 +2,9 @@ import requests
 import time
 import json
 
-# api_token = "5dfd6b0dee902310df772082421968f4c06443abecbc082a8440cb18910a56daca73ac8d04b25154a1128"
 api_version = "5.71"
 url_vk = 'https://api.vk.com/method/'
-#  https://api.vk.com/method/METHOD_NAME?PARAMETERS&access_token=ACCESS_TOKEN&v=V
-# METHOD_NAME
-# PARAMETERS
-# https://vk.com/tim_leary
-api_token = "e536f63676daecdeaafd7da0f06f4ef60334b852b09aaead27ffd395d9df5a947f8eabc75ff1fa08560f5"
+api_token = "9373e080ca76cc6ebefc89d5e82b872d0a557a4362042eb8a1f9623dd04bec15425dd7100228b8f5c2a44"
 
 
 class API:
@@ -47,12 +42,6 @@ class Entity:
 
 
 class User(Entity):
-    # Общие параметры для всех запросов: токен и версия АПИ
-    # common_params = {
-    #     'v': api_version,
-    #     'access_token': api_token
-    # }
-
     def __init__(self, user_id):
         self.id = user_id
         if type(user_id) is str:
@@ -62,8 +51,6 @@ class User(Entity):
     def get_id(cls, user_id):
         response = cls.get_data("users.get", params={"user_ids": [user_id]})
         return response["response"][0].get("id")
-
-    # Обработка ошибки?
 
     def get_friends(self):
         response = User.get_data("friends.get", params={"user_id": self.id})
@@ -79,9 +66,6 @@ class User(Entity):
     def get_name(self):
         response = self.get_data("users.get", params={"user_ids": [self.id]})
         return f"{response['response'][0].get('first_name')} {response['response'][0].get('last_name')}"
-
-        # def __repr__(self):
-        #     return User.get_name(self.id)
 
 
 class Group(Entity):
@@ -123,10 +107,10 @@ def main():
     user_id = str(input("input Id\n"))
     user = User(user_id)
     friends = user.get_friends()
-    groups = set(user.get_groups())  # свои группы
+    groups = set(user.get_groups())
     print("<", end="", flush=True)
     for friend in friends:
-        # len(friends) / 100 * 5 # Реализовать проценты
+
         print("-", end="", flush=True)
         try:
             friend_groups = set(friend.get_groups())
@@ -135,11 +119,8 @@ def main():
             print(err)
     print(">", end="", flush=True)
     groups = list(groups)
-    print(json.dumps(groups, cls=VKEncoder, indent=4, ensure_ascii=False))
-
-
-# print(friends[0].get_friends()[0].get_name())
-
+    with open("results.json", "w", encoding="utf-8") as file:
+        file.write(json.dumps(groups, cls=VKEncoder, indent=4, ensure_ascii=False))
 
 
 if __name__ == "__main__":
